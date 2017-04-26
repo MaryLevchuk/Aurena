@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,6 +17,7 @@ namespace Tests
     public abstract class TestSetup
     {
         public IWebDriver Driver;
+        public string BaseUrl = ConfigurationManager.AppSettings["Test"];
 
         public void InitializeDriver(string driverName)
         {
@@ -35,7 +37,6 @@ namespace Tests
                     break;
             }
         }
-
         
         public IWebDriver OpenBrowser(string browser)
         {

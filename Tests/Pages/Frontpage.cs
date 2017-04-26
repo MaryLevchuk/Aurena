@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-
+using Tests.Helpers;
 
 namespace Tests.Pages
 {
@@ -13,11 +9,20 @@ namespace Tests.Pages
     {
         private IWebDriver _driver;
 
-        [FindsBy(How = How.CssSelector, Using = ".encyclopedia__ingredients ul li")]
-        private IList<IWebElement> Ingredients;
+        [FindsBy(How = How.CssSelector, Using = Locators.Logo)]
+        private IWebElement Logo;
 
-        [FindsBy(How = How.CssSelector, Using = ".encyclopedia__guids__list-item")]
-        private IList<IWebElement> Guides;
+        [FindsBy(How = How.CssSelector, Using = Locators.IntroText)]
+        private IWebElement IntroText;
+
+        [FindsBy(How = How.CssSelector, Using = Locators.NavigationLinks)]
+        private IList<IWebElement> NavigationLinks;
+
+        [FindsBy(How = How.CssSelector, Using = Locators.StartBtn)]
+        private IWebElement StartBtn;
+
+        [FindsBy(How = How.CssSelector, Using = Locators.StartBtnText)]
+        private IWebElement StartBtnText;
 
         public Frontpage(IWebDriver driver)
         {

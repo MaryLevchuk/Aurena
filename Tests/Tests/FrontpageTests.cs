@@ -18,7 +18,7 @@ namespace Tests
         public void StartBrowser(string browserName)
         {
             Driver = OpenBrowser("chrome");
-            Frontpage page = new Frontpage();
+            Frontpage page = new Frontpage(Driver);
 
         }
 

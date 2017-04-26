@@ -16,7 +16,7 @@ namespace Tests
 {
     public abstract class TestSetup
     {
-        public IWebDriver Driver;
+        private IWebDriver _driver;
         public string BaseUrl = ConfigurationManager.AppSettings["Test"];
 
         public void InitializeDriver(string driverName)
@@ -24,16 +24,16 @@ namespace Tests
             switch (driverName)
             {
                 case "chrome":
-                    Driver = new ChromeDriver();
+                    _driver = new ChromeDriver();
                     break;
                 case "firefox":
-                    Driver = new FirefoxDriver();
+                    _driver = new FirefoxDriver();
                     break;
                 case "ie":
-                    Driver = new InternetExplorerDriver();
+                    _driver = new InternetExplorerDriver();
                     break;
                 case "edge":
-                    Driver = new EdgeDriver();
+                    _driver = new EdgeDriver();
                     break;
             }
         }
@@ -41,19 +41,29 @@ namespace Tests
         public IWebDriver OpenBrowser(string browser)
         {
             InitializeDriver(browser);
-            Driver.Manage().Window.Maximize();
-            return Driver;
+            _driver.Manage().Window.Maximize();
+            return _driver;
         }
 
         public void OpenPage(string url)
         {
-            Driver.Navigate().GoToUrl(url);
+            _driver.Navigate().GoToUrl(url);
+        }
+
+        public int GetScreenHeight()
+        {
+            return _driver.Manage().Window.Size.Height;
+        }
+
+        public int GetScreenWidth()
+        {
+            return _driver.Manage().Window.Size.Width;
         }
 
         [OneTimeTearDown]
         public void CloseBrowser()
         {
-            Driver.Quit();
+            _driver.Quit();
         }
 
     }

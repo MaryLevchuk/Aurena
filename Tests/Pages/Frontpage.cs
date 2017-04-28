@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
@@ -35,9 +36,10 @@ namespace Tests.Pages
             Name = driver.Title;
         }
 
-        public void ClickAndHold(IWebElement button)
+        public void Click_AndHold(IWebElement button)
         {
             _builder.ClickAndHold(button).Perform();
+            Thread.Sleep(8000);
         }
 
 

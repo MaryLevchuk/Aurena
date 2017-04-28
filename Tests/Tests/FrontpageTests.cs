@@ -1,8 +1,10 @@
 ﻿using System.Configuration;
 using System.Linq;
+using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Tests.Pages;
 using Tests.Helpers;
 
@@ -46,6 +48,15 @@ namespace Tests
             Item.GetLinkHref(Page.NavigationLinks.Last()).Should().Contain(BaseUrl + ConfigurationManager.AppSettings["SignUpPageUrl"]);
         }
 
+        [Test]
+        public void TransferToAthletesPage_ShouldBe()
+        {
+            Page.Click_AndHold(Page.StartBtn);
+            ExpectedConditions.ElementToBeClickable(By.CssSelector(".athletes-overview__nav__athlete-details.js-goto-profile"));
+            Driver.FindElement(By.CssSelector(".athletes-overview__nav__athlete-details.js-goto-profile")).Click();
+            Thread.Sleep(5000);
+            true.Should().BeTrue();
+        }
 
     }
 }

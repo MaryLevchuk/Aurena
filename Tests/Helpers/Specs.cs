@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 
 
+
 namespace Tests.Helpers
 {
     public static class Specs
@@ -39,7 +40,12 @@ namespace Tests.Helpers
             int itemWidth = item.Size.Width;
             int itemLeftX = item.Location.X;
             int itemRightX = itemLeftX + itemWidth;
-            return (itemRightX - itemLeftX)/2 == screenWidth/2;
+            
+            int temp1 = itemLeftX;
+            int temp2 = (screenWidth - itemWidth) / 2;
+            bool flag = (temp1 <= temp2);
+            return flag;
+            //return (itemRightX - itemLeftX)/2 == screenWidth/2;
         }
 
         public static bool CenteredAllScreen(this IWebElement item)

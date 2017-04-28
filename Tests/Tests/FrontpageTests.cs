@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Tests.Pages;
@@ -17,26 +12,38 @@ namespace Tests
     {
         public IWebDriver Driver;
         public Frontpage Page;
+        public ItemInteraction Item = new ItemInteraction();
 
         public FrontpageTests()
         {
             Driver = OpenBrowser("chrome");
             OpenPage(BaseUrl + ConfigurationManager.AppSettings["FrontpageUrl"]);
             Page = new Frontpage(Driver);
+            Specs.Driver = Driver;
         }
 
         [Test]
-        [Category("Desktop")]
-        [Category("DesignMatch")]
-        public void ItemsLocations_Should_MatchDesign()
+        public void PageTitle_ShouldBe_Aurena()
         {
-            Page.Logo.CenteredHorizontallyScreen().Should().BeTrue();
-            Page.IntroText.CenteredAllScreen().Should().BeTrue();
-            Page.StartBtn.CenteredHorizontallyScreen().Should().BeTrue();
-            Page.StartBtnText.CenteredHorizontallyScreen().Should().BeTrue();
-            Page.NavigationLinks.First().LeftOf(Page.IntroText).Should().BeTrue();
-            Page.NavigationLinks.Last().RightOf(Page.IntroText).Should().BeTrue();
-            Page.StartBtnText.Text.Should().NotBeEmpty();
+            Page.Name.Should().Contain("Aurena");
+        }
+
+        [Test]
+        public void Logo_ShouldHave_ProperLink()
+        {
+            Item.GetLinkHref(Page.Logo).Should().Contain("#");
+        }
+
+        [Test]
+        public void AboutPage_ShouldHave_ProperLink()
+        {
+            Item.GetLinkHref(Page.NavigationLinks.First()).Should().Contain(BaseUrl + ConfigurationManager.AppSettings["AboutPageUrl"]);
+        }
+
+        [Test]
+        public void SignUpPage_ShouldHave_ProperLink()
+        {
+            Item.GetLinkHref(Page.NavigationLinks.Last()).Should().Contain(BaseUrl + ConfigurationManager.AppSettings["SignUpPageUrl"]);
         }
 
 

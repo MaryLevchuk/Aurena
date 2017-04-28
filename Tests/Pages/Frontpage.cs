@@ -10,6 +10,7 @@ namespace Tests.Pages
     {
         private IWebDriver _driver;
         private Actions _builder;
+        public string Name;
 
         [FindsBy(How = How.CssSelector, Using = Locators.Logo)]
         public IWebElement Logo;
@@ -29,8 +30,9 @@ namespace Tests.Pages
         public Frontpage(IWebDriver driver)
         {
             _driver = driver;
-            PageFactory.InitElements(_driver, this);
             _builder = new Actions(_driver);
+            PageFactory.InitElements(_driver, this);
+            Name = driver.Title;
         }
 
         public void ClickAndHold(IWebElement button)

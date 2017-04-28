@@ -50,16 +50,6 @@ namespace Tests
             _driver.Navigate().GoToUrl(url);
         }
 
-        public int GetScreenHeight()
-        {
-            return _driver.Manage().Window.Size.Height;
-        }
-
-        public int GetScreenWidth()
-        {
-            return _driver.Manage().Window.Size.Width;
-        }
-
         [OneTimeTearDown]
         public void CloseBrowser()
         {

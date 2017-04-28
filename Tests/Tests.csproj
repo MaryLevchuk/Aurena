@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ItemInteraction.cs" />
     <Compile Include="Helpers\Locators.cs" />
     <Compile Include="Helpers\Specs.cs" />
     <Compile Include="Pages\AboutPage.cs" />

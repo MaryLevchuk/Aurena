@@ -42,7 +42,7 @@ namespace Tests.Pages
         public void Click_AndHold(IWebElement button)
         {
             _builder.ClickAndHold(button).Perform();
-            //Thread.Sleep(8000);
+            Thread.Sleep(5000);
         }
 
 

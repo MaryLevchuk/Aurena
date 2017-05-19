@@ -25,39 +25,39 @@ namespace Tests
         }
 
         [Test]
+        [Category("Frontpage")]
         public void PageTitle_ShouldBe_Aurena()
         {
             Page.Name.Should().Contain("Aurena");
         }
 
         [Test]
+        [Category("Frontpage")]
         public void Logo_ShouldHave_ProperLink()
         {
             Item.GetLinkHref(Page.Logo).Should().Contain("#");
         }
 
         [Test]
-        public void AboutPage_ShouldHave_ProperLink()
+        [Category("Frontpage")]
+        public void AboutPageLink_ShouldHave_ProperLink()
         {
             Item.GetLinkHref(Page.NavigationLinks.First()).Should().Contain(BaseUrl + ConfigurationManager.AppSettings["AboutPageUrl"]);
         }
 
         [Test]
-        public void SignUpPage_ShouldHave_ProperLink()
+        [Category("Frontpage")]
+        public void SignUpPageLink_ShouldHave_ProperLink()
         {
             Item.GetLinkHref(Page.NavigationLinks.Last()).Should().Contain(BaseUrl + ConfigurationManager.AppSettings["SignUpPageUrl"]);
         }
 
         [Test]
+        [Category("Frontpage")]
         public void TransferToAthletesPage_ShouldBe()
         {
             Page.Click_AndHold(Page.StartBtn);
-            ExpectedConditions.ElementToBeClickable(By.CssSelector(".athletes-overview__nav__athlete-details.js-goto-profile"));
-            //Driver.FindElement(By.CssSelector(".athletes-overview__nav__athlete-details.js-goto-profile")).Click();
-            Thread.Sleep(5000); //necessary for transfering to athletes page
-            //Page.StartBtn.Should()
-            true.Should().BeTrue();
-
+            Page.NavDots.Displayed.Should().BeTrue();
         }
 
     }

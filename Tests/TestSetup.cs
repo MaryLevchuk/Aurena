@@ -17,7 +17,7 @@ namespace Tests
     public abstract class TestSetup
     {
         private IWebDriver _driver;
-        public string BaseUrl = ConfigurationManager.AppSettings["Test"];
+        public string BaseUrl = ConfigurationManager.AppSettings["Site"];
 
         public void InitializeDriver(string driverName)
         {

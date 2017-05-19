@@ -14,6 +14,7 @@ namespace Tests.Helpers
         public const string NavigationLinks = ".site-navigation__link";
         public const string StartBtn = ".athletes-overview__start-button.js-start";
         public const string StartBtnText = ".athletes-overview__start-button-text.js-clickhold-text";
+        public const string NavDots = ".athletes-overview__nav__paging-item.js-paging-item";
 
     }
 }

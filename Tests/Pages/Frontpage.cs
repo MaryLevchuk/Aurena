@@ -28,6 +28,9 @@ namespace Tests.Pages
         [FindsBy(How = How.CssSelector, Using = Locators.StartBtnText)]
         public IWebElement StartBtnText;
 
+        [FindsBy(How = How.CssSelector, Using = Locators.NavDots)]
+        public IWebElement NavDots;
+
         public Frontpage(IWebDriver driver)
         {
             _driver = driver;
@@ -39,7 +42,7 @@ namespace Tests.Pages
         public void Click_AndHold(IWebElement button)
         {
             _builder.ClickAndHold(button).Perform();
-            Thread.Sleep(8000);
+            //Thread.Sleep(8000);
         }
 
 
